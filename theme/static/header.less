@@ -1,0 +1,121 @@
+.header{
+ background: #fff;
+ height: 80px;
+ margin-bottom: 24px;
+ padding:0 48px;
+ width: 100%;
+ border:1px solid pink;
+}
+body{
+	font-size: 14px;
+}
+/*图文并排只要float就可以了*/
+.corp{
+	height: 80px;
+    line-height: 80px;
+    float: right;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #108ee9;
+}
+@media only screen and (max-width: 992px) and (min-width: 0){
+ /*对于第一列中的Col，我们也要随着网页宽度的变化而位置发生变化*/
+ a#logo {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    /*当页面宽度较小的时候，取消浮动，去掉包裹特性*/
+    display: block;
+ }
+  .popover-icon {
+    display: block!important;
+   }
+   /*768,992,1200，当小于992的时候我们显示气泡卡片*/
+   .popover-icon:before {
+    content: "";
+    display: block;
+    border-radius: 2px;
+    width: 16px;
+    height: 2px;
+    background: #777;
+    box-shadow: 0 6px 0 0 #777, 0 12px 0 0 #777;
+    position: absolute;
+   }
+
+  /*弹出的这个菜单宽度为300px，其中ant-popover-inner-content是内容
+   这是在我们的[0,992]小屏幕的时候显示这样
+  */
+  .popover-menu {
+    width: 300px;
+    button.lang {
+      margin: 16px auto;
+      float: none;
+    }
+    /*Popover组件内部所有的内容都被ant-popover-inner包裹住,但是真正的最内侧的
+     容器是ant-popover-inner-content这个类
+    */
+    .ant-popover-inner {
+      overflow: hidden;
+      text-align: center;
+      &-content {
+        padding: 0;
+      }
+    }
+  }
+  /*这必须要我们知道我们的菜单其实被渲染为了ul标签了*/
+  ul#nav,
+  ul#nav li {
+    width: 100%;
+    font-size: 14px;
+  }
+  ul#nav li{
+    line-height: 60px;
+    height: 60px;
+    text-align: center;
+    padding: 0 !important;
+    border: 0;
+    a {
+      color: #333;
+    }
+  }
+}
+.popover-icon{
+	display: none;
+	position: absolute;
+    right: 30px;
+    top: 32px;
+    z-index: 1;
+    width: 16px;
+    height: 22px;
+    cursor: pointer;
+}
+.lang{
+	float:right;
+	margin-top:24px;
+}
+#logo{
+	line-height: 80px;
+	float:left;
+	height: 80px;
+}
+.select-content{
+	width:200px;
+}
+#banner{
+	width: 40px;
+	height: 80px;
+}
+#search-box{
+	float: left;
+	width:200px;
+	height:22px;
+	margin:29px ;
+	line-height: 22px auto 0;
+	border-left:1px solid #ebedee;
+	padding-left: 30px;
+}
+.menu{
+	float:right;
+	line-height: 76px;
+}

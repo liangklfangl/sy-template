@@ -1,0 +1,65 @@
+{
+  "Components": {
+    "Feedback": [
+      {
+        "category": "Components",
+        "subtitle": "警告提示",
+        "type": "Feedback",
+        "title": "Alert",
+        "filename": "components/alert/index.zh-CN.md"
+      }
+    ],
+    "General": [
+      {
+        "category": "Components",
+        "type": "General",
+        "title": "Button",
+        "subtitle": "按钮",
+        "filename": "components/button/index.zh-CN.md"
+      }
+    ]
+  },
+ //这上面的category为Components，而Components中每一个元素都是一个type,type里面才是真实的数据
+  "topLevel": {
+    "topLevel": [
+      {
+        "order": 0,
+        "title": "Ant Design of React",
+        "filename": "docs/react/introduce.md"
+      },
+      {
+        "order": 1,
+        "title": "快速上手",
+        "filename": "docs/react/getting-started.zh-CN.md"
+      },
+      {
+        "order": 2,
+        "title": "安装",
+        "filename": "docs/react/install.zh-CN.md"
+      },
+      {
+        "order": 3,
+        "title": "项目实战",
+        "filename": "docs/react/practical-projects.zh-CN.md"
+      },
+      {
+        "order": 4,
+        "title": "定制主题",
+        "filename": "docs/react/customize-theme.zh-CN.md"
+      },
+      {
+        "order": 5,
+        "title": "i18n 方案",
+        "link": "//github.com/ant-design/intl-example",
+        "filename": "docs/react/i18n-solution.zh-CN.md"
+      },
+      {
+        "order": 6,
+        "title": "更新日志",
+        "toc": false,
+        "timeline": true,
+        "filename": "changelog.md"
+      }
+    ]
+  }
+}
