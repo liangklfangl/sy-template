@@ -105,3 +105,38 @@ function getModuleData(props) {
 }
 ```
 第一级别为category，第二级别为type,每一个type都是一个数组，表示该type具有的组件的集合。没有指明category那么默认是topLevel，没有指明type默认也是topLevel。topLevel的category下也可以有特定type的数组，此时会被转化为`SubMenu`~
+
+### 4.MainContent组件的作用
+到了MainContent组件，那么表示我们顶部导航获取到了该页面实例化`需要的所有的数据了`，同时将数据放在this.props中，此时我们可以针对当前URL对应的页面来显示这些数据！！只是在内部，我们会根据是否有demo而实例化不同的Article或者Doc组件~
+
+
+### 4.Doc,Article组件的作用
+Doc组件表示有demo的页面的显示，而Article表示用于显示没有demo的markdown文件
+
+
+### 5.pageData的作用
+根据URL得到的数据，是真实显示的数据，第二行的右侧内容。pageData可以通过两个地方处理，第一个就是collect方法，第二个就是我们的TemplateWrapper函数。其中collect是对TemplateWrapper中产生的pageData进行进一步的处理，所以记得将他传递给子组件~~~
+
+### 6.顶部切换能自由更新左侧和右侧内容的关键
+```js
+function getMenuItems(moduleData,) {
+  const menuMeta = moduleData.map(item => item.meta);
+  const menuItems = {};
+  menuMeta.sort(
+    (a, b) => (a.order || 0) - (b.order || 0)
+  ).forEach((meta) => {
+    const category = meta.category || 'topLevel';
+    if (!menuItems[category]) {
+      menuItems[category] = {};
+    }
+    const type = meta.type || 'topLevel';
+    if (!menuItems[category][type]) {
+      menuItems[category][type] = [];
+    }
+    //每一个{category:{type:[]}},其中category表示是哪一类，component下type的Navigation会有很多组件的
+    menuItems[category][type].push(meta);
+  });
+  return menuItems;
+}
+```
+关键在于这个方法可以将我们的数据分成不同的类，分别为topLevel,subMenu,Menu.Item

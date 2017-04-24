@@ -18,17 +18,14 @@ body{
     text-transform: uppercase;
     color: #108ee9;
 }
-@media only screen and (max-width: 992px) and (min-width: 0){
- /*对于第一列中的Col，我们也要随着网页宽度的变化而位置发生变化*/
- a#logo {
-    width: 150px;
-    margin-left: auto;
-    margin-right: auto;
-    float: none;
-    /*当页面宽度较小的时候，取消浮动，去掉包裹特性*/
-    display: block;
- }
-  .popover-icon {
+/*[320,1080]我们的搜索框都不显示*/
+@media only screen and (min-width: 320px) and (max-width: 1080px) {
+  #search-box {
+    display: none;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 990px) {
+ .popover-icon {
     display: block!important;
    }
    /*768,992,1200，当小于992的时候我们显示气泡卡片*/
@@ -42,8 +39,7 @@ body{
     box-shadow: 0 6px 0 0 #777, 0 12px 0 0 #777;
     position: absolute;
    }
-
-  /*弹出的这个菜单宽度为300px，其中ant-popover-inner-content是内容
+    /*弹出的这个菜单宽度为300px，其中ant-popover-inner-content是内容
    这是在我们的[0,992]小屏幕的时候显示这样
   */
   .popover-menu {
@@ -62,6 +58,21 @@ body{
         padding: 0;
       }
     }
+}
+@media only screen and (max-width: 940px) and (min-width: 320px){
+ #search-box {
+    display: none;
+  }
+ /*对于第一列中的Col，我们也要随着网页宽度的变化而位置发生变化*/
+ a#logo {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    /*当页面宽度较小的时候，取消浮动，去掉包裹特性*/
+    display: block;
+  }
+
   }
   /*这必须要我们知道我们的菜单其实被渲染为了ul标签了*/
   ul#nav,

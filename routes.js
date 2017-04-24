@@ -22,7 +22,6 @@ function defaultCollect(nextProps, callback) {
 }
 
 module.exports = function getRoutes(data) {
-  console.log("data的值",data);
   const plugins = data.plugins;
   //其中markdowndata中的plugins表示的是哪些用于将jsonml转化为components的组件本身
   const converters = chain((plugin) => plugin.converters || [], plugins);

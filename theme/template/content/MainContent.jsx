@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { Row, Col, Menu } from 'antd';
+import Doc from "./Doc";
+import Article from "./Article";
 const SubMenu = Menu.SubMenu;
-
+const styles = require("../../static/main-content.less");
 function isNotTopLevel(level) {
   return level !== 'topLevel';
 }
@@ -76,7 +78,7 @@ export default class MainContent extends React.Component{
               <span className="chinese" key="chinese">{item.subtitle}</span>
             ];
     const disabled = item.disabled;
-    const url = item.filename.replace(/(\/index)?\.md$/i, '').toLowerCase();
+    const url = item.filename.replace(/(\/index)?((\.zh-CN)|(\.en-US))?\.md$/i, '').toLowerCase();
     const child = !item.link ? (
       <Link to={url} disabled={disabled}>
            {text}
@@ -133,20 +135,29 @@ export default class MainContent extends React.Component{
 
  //第二个Col表示在sm和xs下也独自占据一行
  render(){
+ 	console.log('MainContent this.props:',this.props);
     const props = this.props;
     //是为了显示当前选中的菜单的key数组
     const menuItems = this.getMenuItems();
     //得到所有的Menu.Item对象
  	return (
-            <Row>
+            <Row className="main-container-row">
                <Col lg={4} md={6} sm={24} xs={24}>
                  <Menu mode="inline" >
                    {menuItems}
-		         </Menu>
+		            </Menu>
                </Col>
-               <Col  lg={20} md={18} sm={24} xs={24}>
-               </Col>
-            </Row>
+           <Col  lg={20} md={18} sm={24} xs={24} className="main-container">
+             <Choose>
+    				  <When condition={ props.demos }>
+    				    <Doc {...props} demos={props.demos}/>
+    				  </When>
+    				  <Otherwise>
+    				    <Article {...props}/>
+    				  </Otherwise>
+    		  	 </Choose>
+            </Col>
+          </Row>
  		)
  }
 } 

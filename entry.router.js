@@ -5,6 +5,14 @@ const history = require('history');
 let data  = require('./mock/data.json');
 import createElement from "./lib/util/createElement";
 import Router from "react-router";
+
+//设置浏览器端转化的插件
+data.plugins= [
+  require('./mock/highlight.js')(null),
+  require('./mock/antd.js')(null),
+   require('./mock/preview.js')(null)
+]
+
 //As entry file, we have to know routes meaning which component to instantiate(ReactRouter)!
 const routes = require('./routes.js')(data);
 const { pathname, search, hash } = window.location;

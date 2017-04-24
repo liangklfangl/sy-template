@@ -16269,28 +16269,7 @@
       ]
     }
   },
-  "plugins": [
-    {
-      "converters": [
-        [
-          null,
-          null
-        ]
-      ]
-    },
-    {
-      "converters": [
-        [
-          null,
-          null
-        ],
-        [
-          null,
-          null
-        ]
-      ]
-    }
-  ],
+
   "picked": {
     "components": [
       {
