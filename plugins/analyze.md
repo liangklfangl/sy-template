@@ -96,41 +96,27 @@ if (meta.iframe) {
 
 (2)browser部分
 ```js
-module.exports = (_, props) =>
+module.exports = () =>
    ({
      converters: [
        [node => JsonML.isElement(node) && isHeading(node), (node, index) => {
          const children = JsonML.getChildren(node);
+         //得到h标签的内容，也就是我们的标题本身，如"API"
          const sluggedId = generateSluggedId(children);
          //生成ID
          return React.createElement(JsonML.getTagName(node), {
            key: index,
            id: sluggedId,
            ...JsonML.getAttributes(node),
+           //H1-h6标签本身的属性保持不变
          }, [
            <span key="title">{children.map(child => toReactElement(child))}</span>,
            <a href={`#${sluggedId}`} className="anchor" key="anchor">#</a>,
          ]);
          //childElement
-       }],
-       [node => JsonML.isElement(node) && JsonML.getTagName(node) === 'a' && !(
-        //如果是a标签，我们转化为link
-        JsonML.getAttributes(node).class ||
-          (JsonML.getAttributes(node).href &&
-           JsonML.getAttributes(node).href.indexOf('http') === 0) ||
-          /^#/.test(JsonML.getAttributes(node).href)
-       ), (node, index) => {
-         const href = JsonML.getAttributes(node).href;
-         return (
-           <Link
-             to={isZhCN(props.location.pathname) ? toZhCNPathname(href) : makeSureComonentsLink(href)}
-             key={index}
-           >
-             {toReactElement(JsonML.getChildren(node)[0])}
-           <\/Link>
-         );
        }]
      ],
    })
 ;
 ```
+其作用就是将h1-h6标签转化为React的元素，同时该元素的子元素为一个超链接，不过该超链接是一个`锚`,用于在页面中跳转。其`锚值`就是该h标签的内容，`不过该空格已经被"_"替换掉了`~

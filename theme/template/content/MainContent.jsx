@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { Row, Col, Menu } from 'antd';
-import Doc from "./Doc";
+import DemoPage from "./DemoPage";
 import Article from "./Article";
 const SubMenu = Menu.SubMenu;
 const styles = require("../../static/main-content.less");
@@ -80,7 +80,7 @@ export default class MainContent extends React.Component{
     const disabled = item.disabled;
     const url = item.filename.replace(/(\/index)?((\.zh-CN)|(\.en-US))?\.md$/i, '').toLowerCase();
     const child = !item.link ? (
-      <Link to={url} disabled={disabled}>
+      <Link to={`${url}/`} disabled={disabled}>
            {text}
       </Link>
     ) : (
@@ -141,23 +141,23 @@ export default class MainContent extends React.Component{
     const menuItems = this.getMenuItems();
     //得到所有的Menu.Item对象
  	return (
-            <Row className="main-container-row">
-               <Col lg={4} md={6} sm={24} xs={24}>
-                 <Menu mode="inline" >
-                   {menuItems}
-		            </Menu>
-               </Col>
-           <Col  lg={20} md={18} sm={24} xs={24} className="main-container">
+          <Row className="main-container-row">
+             <Col lg={4} md={6} sm={24} xs={24}>
+               <Menu mode="inline" >
+                 {menuItems}
+	            </Menu>
+             </Col>
+            <Col  lg={20} md={18} sm={24} xs={24} className="main-container">
              <Choose>
-    				  <When condition={ props.demos }>
-    				    <Doc {...props} demos={props.demos}/>
-    				  </When>
-    				  <Otherwise>
-    				    <Article {...props}/>
-    				  </Otherwise>
-    		  	 </Choose>
-            </Col>
-          </Row>
+  				    <When condition={ props.demos }>
+  				     <DemoPage {...props} demos={props.demos}/>
+  				    </When>
+  				   <Otherwise>
+  				    <Article {...props}/>
+  				   </Otherwise>
+  		  	 </Choose>
+          </Col>
+        </Row>
  		)
  }
 } 

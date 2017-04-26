@@ -36,16 +36,13 @@ module.exports = {
        path: 'docs/pattern/:children',
        component: contentTmpl,
       },
-      //If we click 'component' panel, we will initialize contentTmpl
         {
         path: 'components/:children/',
         component: contentTmpl,
       }
-      //If you click 'component' panel, content part of layoutTemp will be replaced by contentTmpl!
-      //this time collect function will be revoked and left part and right part of content will be recalculated
-      //while header and footer part stand still
+      //此时只有path最后含有"/"才会实例化这个组件，比如"components/alert/"
+      //而"components/alert"不会实例化
     ]
-    //path relative to cwd/theme/template
-    //Every component instantiated will receive a util object to translate jsonml to react Component
+   
   }
 };

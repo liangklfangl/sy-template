@@ -140,3 +140,31 @@ function getMenuItems(moduleData,) {
 }
 ```
 关键在于这个方法可以将我们的数据分成不同的类，分别为topLevel,subMenu,Menu.Item
+
+
+### 7.页面整体的架构思路
+
+首先获取到文件(markdown tree)，然后才考虑文件内容(mark-twain)
+
+(1)首先对于路径"/"会将页面整体的架构(`layoutTemp`组件)显示出来，包括Head,Footer,以及页面主体部分(其实就是一个子元素而已，即`this.props.children`)
+```js
+<layoutTemp>
+    <Header/>
+      {indexRoute/childRoute}
+      //默认直接实例化了我们的IndexRoute,而我们的目标就是通过类jquery的trigger方法来选择一个子组件进行实例化而已
+    <Footer/>
+<\/layoutTemp>
+```
+
+(2)当点击Head中的链接的时候，我们会直接trigger一个路径，让react-router去实例化一个新的子组件(`this.props.children`)来`重新装载到我们的LayoutTemp中`~~
+每次trigger的时候我们会将该URL对应的数据都重新`灌`给组件！
+
+(3)结语
+
+其实Header和Footer都是没有变化的，所以我们其实就是给顶层组件`layoutTemp`切换子组件的过程，每次切换的时候把它需要的数据传进去就可以了。而数据就是根据URL来判断的~~很简单的
+
+### 8.如何写table
+在[这个网页上](http://www.tablesgenerator.com/text_tables#)设置，然后拷贝粘贴就行，此时通过mark-twain处理就便是jsonml了，而且是table
+
+### 9.方法的作用
+我们的process
