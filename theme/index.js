@@ -2,6 +2,18 @@ const path = require('path');
 const contentTmpl = './template/content/index.jsx';
 const layoutTemp = './template/Layout/index.jsx';
 const homeTmpl = './template/home/index.jsx';
+function pickerGenerator(module) {
+  const tester = new RegExp(`^docs/${module}`);
+  return (markdownData) => {
+    const filename = markdownData.meta.filename;
+    if (tester.test(filename) &&
+        !/\/demo$/.test(path.dirname(filename))) {
+      return {
+        meta: markdownData.meta,
+      };
+    }
+  };
+}
 module.exports = {
   routes: {
   	path:'/',

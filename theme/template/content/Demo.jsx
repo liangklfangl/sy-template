@@ -18,12 +18,12 @@ export default class Demo extends React.Component {
    handleCodeExpand = ()=>{
      this.setState({codeExpand : !this.state.codeExpand});
    }
-   //父组件传递了codeExpand也要重新渲染子组件
+   //父组件传递了codeExpand也要重新渲染子组件，这种情况只有在都是布尔值的情况下可用
    //this.state.codeExpand || this.props.codeExpand表示上次组件的状态~
    //nextProps.codeExpand || nextState.codeExpand表示组件的下次状态~
    shouldComponentUpdate(nextProps,nextState){
      return (this.state.codeExpand || this.props.codeExpand)!==(nextProps.codeExpand || nextState.codeExpand)
-   }
+ }
    render(){
     //我们手动添加highlightStyle
   const {content,highlightedCode,meta,jsonmlReactLoader} = this.props;

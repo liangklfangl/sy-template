@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Footer from "./Footer";
 const a11y = require('react-a11y');
 const styles = require("../../static/page.less");
+const antd = require("antd");
 export default class Page extends React.Component{
   constructor(){
     super();
